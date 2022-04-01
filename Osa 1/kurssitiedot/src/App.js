@@ -1,4 +1,4 @@
-
+//////////HARJOITUS 1.4 DONE///////////////////////////////
 
 const Header = (props) => {
   //Header huolehtii kurssin nimen renderöimisestä
@@ -19,11 +19,17 @@ const Part = (props) => {
 ////////////////////////////////////////////////////////
 
 const Content = (props) => {
+
+
+//console.log(props.list[0].name)
+
+
+
   return(
     <div>
-    <Part partName = {props.part1} partExcercises = {props.exercises1}/>
-    <Part partName = {props.part2} partExcercises = {props.exercises2}/>
-    <Part partName = {props.part3} partExcercises = {props.exercises3}/>
+    <Part partName = {props.list[0].name} partExcercises = {props.list[0].exercises}/>
+    <Part partName = {props.list[1].name} partExcercises = {props.list[1].exercises}/>
+    <Part partName = {props.list[2].name} partExcercises = {props.list[2].exercises}/>
     </div>
   )
 }
@@ -34,7 +40,13 @@ const Total = (props) => {
   const reducer = (accumulator, curr) => accumulator + curr;  //luodaan reducer joka laskee arrayn summan
   
 
-  const total = props.excerciseArray.reduce(reducer)  //lasketaan arrayn summa reducerilla
+  const excersiseList = []
+  props.list.forEach(element => {
+  //  console.log('elementti: ' + element.exercises)
+    excersiseList.push(element.exercises)
+  });
+  
+  const total = excersiseList.reduce(reducer)  //lasketaan arrayn summa reducerilla
   console.log('reducer tehty, arrayn summa: ' + total)
   return (
     <div>
@@ -87,11 +99,12 @@ const App = () => {
   return (
     <div>
       <Header courseName = {course}/>
-      <Content part1 = {list[0].name} exercises1 = {list[0].exercises} part2 = {list[1].name} exercises2 = {list[1].exercises} part3 = {list[2].name} exercises3 = {list[2].exercises}/>
+      <Content list={list}/>
 
-      <Total excerciseArray = {[list[0].exercises, list[1].exercises, list[2].exercises]}/>
+      <Total list = {list}/>  
     </div>
   )  
+
 
 }
 
