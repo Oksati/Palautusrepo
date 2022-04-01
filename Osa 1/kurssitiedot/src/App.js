@@ -1,4 +1,4 @@
-//////////HARJOITUS 1.4 DONE///////////////////////////////
+//////////HARJOITUS 1.5 DONE///////////////////////////////
 
 const Header = (props) => {
   //Header huolehtii kurssin nimen renderöimisestä
@@ -21,7 +21,7 @@ const Part = (props) => {
 const Content = (props) => {
 
 
-//console.log(props.list[0].name)
+//console.log('kurssin nimi:' + props.list[0].name)
 
 
 
@@ -62,46 +62,37 @@ const Total = (props) => {
 
 
 const App = () => {
- const course = 'Half Stack application development'
-  /* const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14*/
+
+
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
 
 
 
-  const list =
-  [
-    {
-      name: 'Fundamentals of React',
-      exercises: 10
-    },
-    {
-      name: 'Using props to pass data',
-      exercises: 7
-    },
-    {
-      name: 'State of a component',
-      exercises: 14
-    }
-  ]
-
-
-
-  console.log('test1')
-  console.log(list[1].name)
-
-
+  console.log('Test olioon viittaaminen: ' + course.parts[0].name)  // test
 
   console.log('Kutsutaan komponentteja Header, Content ja Total')
   return (
     <div>
-      <Header courseName = {course}/>
-      <Content list={list}/>
+      <Header courseName = {course.name}/>
+      <Content list={course.parts}/> 
 
-      <Total list = {list}/>  
+      <Total list = {course.parts}/>  
     </div>
   )  
 
